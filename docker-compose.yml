@@ -1,0 +1,16 @@
+services:
+  next-app:
+    container_name: chat_next_dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    command: yarn dev
+    environment:
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
