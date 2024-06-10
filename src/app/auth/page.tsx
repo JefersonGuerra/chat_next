@@ -8,7 +8,6 @@ export default function Login() {
     <div className="w-full h-[100vh] float-left flex items-center justify-center flex-wrap">
       <div className="w-[316px] float-left">
         <form>
-          <div className="w-full h-[50px] float-left bg-logo bg-no-repeat bg-center bg-[length:187px] mb-[40px]"></div>
           <div className="w-full float-left flex flex-col space-y-[27px]">
             <TextInput label="Login" type="text" name="email" placeholder="E-mail" required />
             <TextInput label="Senha" type="password" name="password" placeholder="Senha" required />
