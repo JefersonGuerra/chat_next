@@ -15,7 +15,8 @@ const config: Config = {
         'color_4': '#5A5C5A',
         'color_5': '#424242',
         'color_6': '#1A8251',
-        'color_7': '#931515'
+        'color_7': '#931515',
+        'color_8': '#111b21'
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
