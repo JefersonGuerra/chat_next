@@ -16,12 +16,18 @@ const config: Config = {
         'color_5': '#424242',
         'color_6': '#1A8251',
         'color_7': '#931515',
-        'color_8': '#111b21'
+        'color_8': '#111b21',
+        'color_9': '#202c33',
+        'color_10': '#2a3942',
+        'color_11': '#005c4b',
+        'color_12': '#0b141a',
+        'color_13': '#0c1317',
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'send': "url('../assets/img/send.svg')",
+        'defaultBackground': "url('../assets/img/default_background.png')",
+        'newChat': "url('../assets/img/new_chat.svg')",
+        'leftArrow': "url('../assets/img/left-arrow.svg')",
       },
     },
   },

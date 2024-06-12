@@ -3,7 +3,7 @@ import imgPlaceholder from "../../assets/img/image-placeholder.png";
 
 export default function ChatUser() {
     return (
-        <div className="w-full flex items-center">
+        <div className="w-full flex items-center hover:bg-color_9">
             <div className="w-[50px] h-[50px] float-left rounded-[150px] overflow-hidden ml-[20px] my-[10px]">
                 <Image src={imgPlaceholder} alt="" width={50} height={50} />
             </div>
