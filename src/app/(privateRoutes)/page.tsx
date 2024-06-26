@@ -4,7 +4,7 @@ import Image from "next/image";
 import imgPlaceholder from "../../assets/img/image-placeholder.png"
 import { ButtonSend } from "@/components/inputs/ButtonSend"
 import TextAreaMenssage from "@/components/inputs/TextAreaMessage"
-import MenssageSend from "@/components/chats/MenssageSend";
+import MessageSend from "@/components/chats/MessageSend";
 import MessageReceived from "@/components/chats/MessageReceived";
 
 export default function Chat() {
@@ -23,8 +23,8 @@ export default function Chat() {
               <p className="text-[16px] font-[montserratsemibold] text-white float-left">Nome Usuario</p>
             </div>
           </div>
-          <div className="w-full h-[calc(100%-162px)] float-left pt-[20px] relative z-[2]">
-            <MenssageSend />
+          <div className="w-full h-[calc(100%-162px)] float-left pt-[20px] relative z-[2] overflow-y-auto">
+            <MessageSend />
             <MessageReceived />
           </div>
           <div className="w-full flex items-center justify-center bg-color_9 py-[20px] absolute bottom-0 z-[2]">

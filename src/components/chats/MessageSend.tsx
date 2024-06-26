@@ -1,4 +1,4 @@
-export default function MenssageSend() {
+export default function MessageSend() {
     return (
         <div className="w-full flex justify-end px-[20px] mb-[5px]">
             <div className="min-w-[70px] min-h-[35px] max-w-[426px] float-left bg-color_11 p-[10px] rounded-[10px]">
