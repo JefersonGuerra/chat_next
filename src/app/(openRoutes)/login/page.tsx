@@ -3,7 +3,7 @@ import { useFormState } from "react-dom"
 import { TextInput } from "@/components/inputs/TextInput"
 import { ButtonDefault } from "@/components/inputs/ButtonDefault"
 import Link from "next/link"
-import handleLogin from '@/actions/login'
+import { handleLogin } from '@/actions/session'
 
 const initialState = {
   success: null,
