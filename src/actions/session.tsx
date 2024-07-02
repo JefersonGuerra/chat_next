@@ -1,6 +1,6 @@
 'use server'
 import { cookies } from 'next/headers'
-import api from "@/services/api"
+import axiosInstance from "@/services/api"
 import jwt from "jsonwebtoken";
 
 export async function encrypt(payload: any) {
@@ -15,6 +15,8 @@ export async function decrypt(token: string) {
 
 export async function handleLogin(prevState: any, formData: FormData) {
 
+    const api = await axiosInstance();
+
     let success;
     let errorValidations: any;
     let loginFailed;
@@ -27,8 +29,6 @@ export async function handleLogin(prevState: any, formData: FormData) {
             secure: process.env.NODE_ENV === 'production',
             path: '/',
         })
-
-        api.defaults.headers.common['Authorization'] = `Bearer ${response.data?.token}`;
 
     }).catch(function (error) {
         console.log(error?.response?.data);
@@ -47,11 +47,10 @@ export async function handleLogin(prevState: any, formData: FormData) {
 export async function getSession() {
     const session = cookies().get('session')?.value;
     if (!session) return null;
-    const decryptSession: any = await decrypt(session);
-    api.defaults.headers.common['Authorization'] = `Bearer ${decryptSession?.payload?.token}`;
-    return decryptSession;
+
+    return await decrypt(session);
 }
 
 export async function logout() {
-    cookies().delete('session')
+    cookies().delete('session');
 }

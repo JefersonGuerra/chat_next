@@ -1,12 +1,14 @@
+'use client'
 import ChatsMenu from "@/components/chats/ChatsMenu"
 import SearchContacts from "@/components/chats/SearchContacts"
 import { ButtonSend } from "@/components/inputs/ButtonSend"
-import TextAreaMenssage from "@/components/inputs/TextAreaMessage"
+import TextAreaMessage from "@/components/inputs/TextAreaMessage"
 import MessageSend from "@/components/chats/MessageSend";
 import MessageReceived from "@/components/chats/MessageReceived"
 import ChatMenuUser from "@/components/chats/ChatMenuUser"
 
-export default async function Chat() {
+export default function Chat() {
+
   return (
     <main className="w-full flex justify-center bg-color_13">
       <div className="w-full max-w-[1700px] float-left bg-color_12 relative overflow-hidden">
@@ -20,7 +22,7 @@ export default async function Chat() {
             <MessageReceived />
           </div>
           <div className="w-full flex items-center justify-center bg-color_9 py-[20px] absolute bottom-0 z-[2]">
-            <TextAreaMenssage placeholder={"Digite uma mensagem"} />
+            <TextAreaMessage placeholder={"Digite uma mensagem"} />
             <ButtonSend className="w-[40px] h-[40px] ml-[20px]" />
           </div>
         </div>

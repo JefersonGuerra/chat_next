@@ -1,7 +1,9 @@
 'use server'
-import api from "@/services/api"
+import axiosInstance from "@/services/api"
 
-export default async function createUser(prevState: any, formData: FormData) {
+export default async function CreateChat(prevState: any, formData: FormData) {
+
+    const api = await axiosInstance();
 
     let success;
     let errorValidations: any;

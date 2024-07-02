@@ -1,7 +1,7 @@
 'use client'
 import { useLayoutEffect, useRef, TextareaHTMLAttributes } from "react";
 
-export default function TextAreaMensage({ className, ...props }: Props) {
+export default function TextAreaMessage({ className, ...props }: Props) {
 
     const textbox = useRef<any>(null);
 
