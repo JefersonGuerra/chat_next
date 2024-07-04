@@ -1,19 +1,37 @@
-import { DOMAttributes } from "react"
+import { DOMAttributes, useState } from "react"
 import Image from "next/image";
 import imgPlaceholder from "../../assets/img/image-placeholder.png";
 import { getSession } from '@/actions/session';
-import { sendInviteContact } from "@/actions/sendInviteContact";
+import { sendInviteContact, aceptInvite, refuseInvite } from "@/actions/inviteContact";
+import { Check, UserRoundPlus, X } from "lucide-react";
 
-export default function ChatUserSearch({ id_user_recipient, nameUser, imageUser, status_sender, status_recipient, ...props }: Props) {
+export default function ChatUserSearch({ idListInvate, id_user_recipient, nameUser, imageUser, statusSender, statusRecipient, ...props }: Props) {
+
+    const [sender, setSender] = useState(statusSender);
+    const [recipient, setRecipient] = useState(statusRecipient);
 
     async function handleSendInviteContact(id_user_recipient: number) {
+        const session: any = await getSession();
+        const statusRequest = await sendInviteContact(id_user_recipient, session.userResult.id)
+        if (statusRequest === 201) {
+            setRecipient(false)
+        }
+    }
 
-        console.log(status_sender)
-        console.log(status_recipient)
+    async function handleAceptInvite(idListInvate: number) {
+        const statusRequest = await aceptInvite(idListInvate)
+        if (statusRequest === 200) {
+            setSender(true)
+            setRecipient(true)
+        }
+    }
 
-        // const session: any = await getSession();
-        // sendInviteContact(id_user_recipient, session.userResult.id)
-
+    async function handleRefuseInvite(idListInvate: number) {
+        const statusRequest = await refuseInvite(idListInvate)
+        if (statusRequest === 200) {
+            setSender(undefined)
+            setRecipient(undefined)
+        }
     }
 
     return (
@@ -29,17 +47,23 @@ export default function ChatUserSearch({ id_user_recipient, nameUser, imageUser,
                 <p className="text-white text-[15px] font-[montserratmedium]">{nameUser}</p>
 
                 {
-                    !status_sender && status_sender !== undefined ?
-                        <div className="w-[100px]">
-                            <button className="w-[50px] h-[25px] float-left bg-red-600" onClick={() => handleSendInviteContact(id_user_recipient)}></button>
-                            <button className="w-[50px] h-[25px] float-left bg-green-600" onClick={() => handleSendInviteContact(id_user_recipient)}></button>
+                    !sender && sender !== undefined ?
+                        <div className="w-[60px]">
+                            <X onClick={() => handleRefuseInvite(idListInvate)} className="w-[30px] h-[30px] float-left text-[12px] text-color_7 cursor-pointer" />
+                            <Check onClick={() => handleAceptInvite(idListInvate)} className="w-[30px] h-[30px] float-left text-color_6 cursor-pointer" />
                         </div>
-                        : !status_recipient && status_recipient !== undefined ?
-                            <button className="w-[100px] h-[25px] float-left bg-gray-600" onClick={() => handleSendInviteContact(id_user_recipient)}></button>
-                            : status_sender || status_recipient ?
-                                <button className="w-[100px] h-[25px] float-left bg-blue-600" onClick={() => handleSendInviteContact(id_user_recipient)}></button>
+                        :
+                        !recipient && recipient !== undefined ?
+                            <div className="">
+                                <p className="text-white text-[15px] font-[montserratmedium]">Solicitação enviada</p>
+                            </div>
+                            :
+                            sender || recipient ?
+                                <div className="">
+                                    <p className="text-white text-[15px] font-[montserratmedium]">Adicionado</p>
+                                </div>
                                 :
-                                <button className="w-[100px] h-[25px] float-left bg-orange-600" onClick={() => handleSendInviteContact(id_user_recipient)}></button>
+                                <UserRoundPlus onClick={() => handleSendInviteContact(id_user_recipient)} className="w-[30px] h-[30px] float-left text-[12px] text-color_1 cursor-pointer" />
                 }
 
             </div>
@@ -51,6 +75,7 @@ interface Props extends DOMAttributes<HTMLDivElement> {
     nameUser?: string,
     imageUser?: string,
     id_user_recipient: number,
-    status_sender: boolean | undefined,
-    status_recipient: boolean | undefined
+    statusSender: boolean | undefined,
+    statusRecipient: boolean | undefined
+    idListInvate: number
 }

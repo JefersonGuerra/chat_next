@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import ChatUserSearch from "./ChatUserSearch"
 import LeftArrow from "../inputs/LeftArrow"
 import ContactsSearchBar from "../inputs/ContactsSearchBar"
@@ -18,9 +18,6 @@ export default function SearchContacts() {
 
     async function onChangeSearchBar(event: string) {
         const resultSearch = await searchContactUser(event, session.userResult.id);
-        // console.log(resultSearch.filter((item: any) => item.id !== session.userResult.id).map((item: any) => item.add_contact_sender).map((item: any) => item[0]?.status));
-        // console.log(resultSearch.filter((item: any) => item.id !== session.userResult.id).map((item: any) => item.add_contact_recipient).map((item: any) => item[0]?.status));
-        // console.log(resultSearch);
         setListUserContact(resultSearch);
     }
 
@@ -41,13 +38,16 @@ export default function SearchContacts() {
                     <ContactsSearchBar placeholder="Pesquisar email" onChange={(e) => onChangeSearchBar(e.currentTarget.value)} />
                 </div>
             </div>
+
             <div className="w-full h-[calc(100vh-120px)] float-left overflow-auto">
-                {
-                    listUserContact?.filter((item: any) => item.id !== session.userResult.id).map((item: any) => {
-                        return <ChatUserSearch key={item.public_id} imageUser={item.image} nameUser={item.name} id_user_recipient={item.id} status_sender={item.add_contact_sender[0]?.status} status_recipient={item.add_contact_recipient[0]?.status} />
-                    })
-                }
-            </div>+
+                <Suspense fallback={<p>Loading feed...</p>}>
+                    {
+                        listUserContact?.filter((item: any) => item.id !== session.userResult.id).map((item: any) => {
+                            return <ChatUserSearch key={item.public_id} idListInvate={item.add_contact_sender[0]?.id ?? item.add_contact_recipient[0]?.id} imageUser={item.image} nameUser={item.name} id_user_recipient={item.id} statusSender={item.add_contact_sender[0]?.status} statusRecipient={item.add_contact_recipient[0]?.status} />
+                        })
+                    }
+                </Suspense>
+            </div>
         </div>
     )
 }
