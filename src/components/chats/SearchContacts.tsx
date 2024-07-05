@@ -10,6 +10,7 @@ export default function SearchContacts() {
 
     const [listUserContact, setListUserContact] = useState<any>();
     const [session, setSession] = useState<any>();
+    const [query, setQuery] = useState<string>('');
 
     function closeContactsSearchBar() {
         const SearchContacts = window.document.getElementById("SearchContacts");
@@ -17,6 +18,7 @@ export default function SearchContacts() {
     }
 
     async function onChangeSearchBar(event: string) {
+        setQuery(event)
         const resultSearch = await searchContactUser(event, session.userResult.id);
         setListUserContact(resultSearch);
     }
@@ -40,12 +42,8 @@ export default function SearchContacts() {
             </div>
 
             <div className="w-full h-[calc(100vh-120px)] float-left overflow-auto">
-                <Suspense fallback={<p>Loading feed...</p>}>
-                    {
-                        listUserContact?.filter((item: any) => item.id !== session.userResult.id).map((item: any) => {
-                            return <ChatUserSearch key={item.public_id} idListInvate={item.add_contact_sender[0]?.id ?? item.add_contact_recipient[0]?.id} imageUser={item.image} nameUser={item.name} id_user_recipient={item.id} statusSender={item.add_contact_sender[0]?.status} statusRecipient={item.add_contact_recipient[0]?.status} />
-                        })
-                    }
+                <Suspense fallback={<p className="w-full float-left text-color_6 text-[20px]">Loading feed...</p>}>
+                    <ChatUserSearch dataUser={listUserContact} sessionId={session?.userResult.id} query={query} />
                 </Suspense>
             </div>
         </div>
