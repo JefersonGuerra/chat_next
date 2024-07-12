@@ -23,7 +23,7 @@ export default function Login() {
             <TextInput label="Login" type="text" name="email" placeholder="E-mail" required errorValidations={state.errorValidations?.email ?? state?.loginFailed} />
             <TextInput label="Senha" type="password" name="password" placeholder="Senha" required errorValidations={state.errorValidations?.password} />
           </div>
-          <Link href={'/recuperar-senha'} className={'w-full float-left text-[12px] text-color_3 text-right font-[montserratsemibold] mt-[10px]'} >Esqueceu a senha?</Link>
+          <Link href={'/sign-up'} className={'w-full float-left text-[12px] text-color_3 text-right font-[montserratsemibold] mt-[10px]'} >Registrar</Link>
           <div className="w-full float-left flex justify-center mt-[48px]">
             <ButtonDefault type={"submit"} label="ENTRAR" />
           </div>
