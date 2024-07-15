@@ -1,10 +1,10 @@
-'use client'
+import { useEffect, useState } from "react";
 import ChatUser from "./ChatUser"
 import ButtonNewChat from "../inputs/ButtonNewChat"
 
 export default function ChatsMenu() {
 
-    const openContactsSearchBar = () => {
+    function openContactsSearchBar() {
         const SearchContacts = window.document.getElementById("SearchContacts");
         SearchContacts?.setAttribute("style", "left: 0; transition-duration: 0.3s;");
     }
@@ -16,23 +16,6 @@ export default function ChatsMenu() {
                 <ButtonNewChat className="w-[25px] h-[25px] float-right mr-[20px]" onClick={openContactsSearchBar} />
             </div>
             <div className="w-full h-[calc(100vh-70px)] float-left overflow-auto">
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
-                <ChatUser />
                 <ChatUser />
             </div>
         </div>
