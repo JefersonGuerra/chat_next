@@ -1,9 +1,7 @@
 'use server'
-import axiosInstance from "@/services/api"
+import api from "@/services/api"
 
 export async function sendInviteContact(id_user_recipient: number, id_user_sender: number) {
-
-    const api = await axiosInstance();
 
     return await api.post(`/contactRequest`, {
         id_user_recipient,
@@ -19,8 +17,6 @@ export async function sendInviteContact(id_user_recipient: number, id_user_sende
 
 export async function aceptInvite(idListInvate: number) {
 
-    const api = await axiosInstance();
-
     return await api.put(`/contactRequest/aceptInvite`, {
         idListInvate,
     }).then(function (response) {
@@ -32,8 +28,6 @@ export async function aceptInvite(idListInvate: number) {
 }
 
 export async function refuseInvite(idListInvate: number) {
-
-    const api = await axiosInstance();
 
     return await api.delete(`/contactRequest/refuseInvite`, {
         params: { idListInvate },

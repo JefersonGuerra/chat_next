@@ -1,9 +1,10 @@
 'use server'
 import { cookies } from 'next/headers'
-import axiosInstance from "@/services/api"
+import api from "@/services/api"
 import jwt from "jsonwebtoken";
+import { UserType } from '@/types/user'
 
-export async function encrypt(payload: any) {
+export async function encrypt(payload: UserType) {
     return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 }
 
@@ -14,8 +15,6 @@ export async function decrypt(token: string) {
 }
 
 export async function handleLogin(prevState: any, formData: FormData) {
-
-    const api = await axiosInstance();
 
     let success;
     let errorValidations: any;
@@ -48,7 +47,8 @@ export async function getSession() {
     const session = cookies().get('session')?.value;
     if (!session) return null;
 
-    return await decrypt(session);
+    const sessionDecrypt: any = await decrypt(session);
+    return sessionDecrypt;
 }
 
 export async function logout() {

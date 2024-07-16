@@ -1,9 +1,7 @@
 'use server'
-import axiosInstance from "@/services/api"
+import api from "@/services/api"
 
 export default async function listContact(id_user: number) {
-
-    const api = await axiosInstance();
 
     return (
         await api.get(`/listContact`, {

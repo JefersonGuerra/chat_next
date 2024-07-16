@@ -1,9 +1,7 @@
 'use server'
-import axiosInstance from "@/services/api"
+import api from "@/services/api"
 
 export default async function searchContactUser(email: string, id_user_sender: number) {
-
-    const api = await axiosInstance();
 
     return await api.get(`/contactRequest`, {
         params: {
