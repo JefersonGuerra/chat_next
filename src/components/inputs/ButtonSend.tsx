@@ -1,8 +1,8 @@
 import { InputHTMLAttributes } from "react"
 
-export const ButtonSend = ({ label, className, ...props }: Props) => {
+export const ButtonSend = ({ label, ...props }: Props) => {
     return (
-        <label className={`${className ?? ''} bg-send bg-cover`}>
+        <label className={`w-[40px] h-[40px] ml-[20px] bg-send bg-cover`}>
             <input hidden {...props} readOnly value={label && label} />
         </label>
     )

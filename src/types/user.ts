@@ -1,4 +1,4 @@
-export interface UserType {
+export type UserType = {
     token: string,
     userResult: {
         id: number,
@@ -7,4 +7,12 @@ export interface UserType {
         email: string,
         image: string,
     }
+}
+
+export type ContactType = {
+    id: number,
+    public_id: string,
+    name: string,
+    email: string,
+    image: string,
 }

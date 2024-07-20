@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import ChatUserSearch from "./ChatUserSearch"
 import LeftArrow from "../inputs/LeftArrow"
 import ContactsSearchBar from "../inputs/ContactsSearchBar"
@@ -40,11 +40,8 @@ export default function SearchContacts() {
                     <ContactsSearchBar placeholder="Pesquisar email" onChange={(e) => onChangeSearchBar(e.currentTarget.value)} />
                 </div>
             </div>
-
             <div className="w-full h-[calc(100vh-120px)] float-left overflow-auto">
-                <Suspense fallback={<p className="w-full float-left text-color_6 text-[20px]">Loading feed...</p>}>
-                    <ChatUserSearch dataUser={listUserContact} sessionId={session?.userResult.id} query={query} />
-                </Suspense>
+                <ChatUserSearch dataUser={listUserContact} sessionId={session?.userResult.id} query={query} />
             </div>
         </div>
     )

@@ -3,6 +3,8 @@ import imgPlaceholder from "../../assets/img/image-placeholder.png";
 import { DOMAttributes, useEffect, useState } from "react"
 import listContact from "@/actions/listContact";
 import { getSession } from '@/actions/session';
+import { useContactStore } from '@/store/contactStore'
+import { ContactType } from '@/types/user'
 
 export default function ChatUser({ ...props }: Props) {
 
@@ -14,14 +16,18 @@ export default function ChatUser({ ...props }: Props) {
         setResultList(listContactData);
     }
 
+    function setContact(dataContact: ContactType) {
+        useContactStore.getState().addContact(dataContact);
+    }
+
     useEffect(() => {
         getListContact()
     }, [])
 
     return (
-        resultList?.map((item: any) => {
+        resultList?.map((item: ContactType) => {
             return (
-                <div key={item.id} {...props} className="w-full flex items-center hover:bg-color_9">
+                <div key={item.id} {...props} onClick={() => setContact(item)} className="w-full flex items-center hover:bg-color_9 cursor-pointer">
                     <div className="w-[50px] h-[50px] flex justify-center items-center float-left rounded-[150px] overflow-hidden ml-[20px] my-[10px]">
                         {item.image ?
                             <img src={item.image} alt="" className="w-full h-full" />

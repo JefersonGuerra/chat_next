@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.11",
     "axios": "^1.7.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.400.0",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "socket.io-client": "^4.7.5",
+    "uuid": "^10.0.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",
