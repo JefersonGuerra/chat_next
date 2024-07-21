@@ -15,4 +15,5 @@ export type ContactType = {
     name: string,
     email: string,
     image: string,
+    room: string,
 }

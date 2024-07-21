@@ -2,7 +2,6 @@ import Image from "next/image";
 import imgPlaceholder from "../../assets/img/image-placeholder.png";
 import { DOMAttributes, useEffect, useState } from "react"
 import listContact from "@/actions/listContact";
-import { getSession } from '@/actions/session';
 import { useContactStore } from '@/store/contactStore'
 import { ContactType } from '@/types/user'
 
@@ -11,11 +10,10 @@ export default function ChatUser({ ...props }: Props) {
     const [resultList, setResultList] = useState<any>();
 
     async function getListContact() {
-        const user: any = await getSession();
-        const listContactData = await listContact(user?.userResult.id);
+        const listContactData = await listContact();
         setResultList(listContactData);
     }
-
+    
     function setContact(dataContact: ContactType) {
         useContactStore.getState().addContact(dataContact);
     }
